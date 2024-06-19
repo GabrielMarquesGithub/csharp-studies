@@ -2,7 +2,7 @@
 
 public class Triangle
 {
-    private readonly double[] Points;
+    private readonly double[] _points;
     const int pointsQuantity = 3;
 
     public Triangle(double[] points)
@@ -11,13 +11,13 @@ public class Triangle
         {
             throw new ArgumentException("Um triangulo deve ter 3 pontas");
         }
-        Points = points;
+        _points = points;
     }
 
     public double GetArea()
     {
-        double p = (Points[0] + Points[1] + Points[2]) / 2;
-        double area = Math.Sqrt(p * (p - Points[0]) * (p - Points[1]) * (p - Points[2]));
+        double p = (_points[0] + _points[1] + _points[2]) / 2;
+        double area = Math.Sqrt(p * (p - _points[0]) * (p - _points[1]) * (p - _points[2]));
         return area;
     }
     static public double WhatIsBiggest(Triangle[] triangles)

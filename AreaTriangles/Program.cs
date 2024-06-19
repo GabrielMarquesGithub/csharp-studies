@@ -9,5 +9,11 @@ class Program
         Console.WriteLine($"Area do triangulo 1: {triangle1.GetArea()}");
         Console.WriteLine($"Area do triangulo 2: {triangle2.GetArea()}");
         Console.WriteLine($"Maior area: {Triangle.WhatIsBiggest([triangle1, triangle2])}");
+        Teste();
+    }
+
+    static void Teste()
+    {
+        Console.WriteLine("Teste");
     }
 }
