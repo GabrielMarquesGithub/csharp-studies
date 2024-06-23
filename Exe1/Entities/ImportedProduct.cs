@@ -1,6 +1,6 @@
 ﻿namespace Exe1;
 
-sealed class ImportedProduct(string name, double price, double customsFee) : Product(name, price)
+internal sealed class ImportedProduct(string name, double price, double customsFee) : Product(name, price)
 {
     // Props
     private readonly double _customsFee = customsFee;
