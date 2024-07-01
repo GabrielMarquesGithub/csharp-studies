@@ -21,7 +21,7 @@ for (int i = 0; i < n; i++)
     }
 }
 
-StringBuilder stringAlturas = new();
+StringBuilder stringAlturas = new(n + (n -1));
 foreach (var (altura, index) in alturas.Select((value, index) => (value, index)))
 {
     stringAlturas.Append(altura);
