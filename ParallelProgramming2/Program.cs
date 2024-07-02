@@ -22,6 +22,11 @@ stopwatch.Stop();
 Console.WriteLine($"ParallelSumWithLocal: {sum}, Time: {stopwatch.ElapsedMilliseconds} ms");
 
 stopwatch.Restart();
+sum = ParallelSumWithPartition(numbersArray);
+stopwatch.Stop();
+Console.WriteLine($"ParallelSumWithPartition: {sum}, Time: {stopwatch.ElapsedMilliseconds} ms");
+
+stopwatch.Restart();
 sum = ParallelSumWithLocalWithPartition(numbersArray);
 stopwatch.Stop();
 Console.WriteLine($"ParallelSumWithLocalWithPartition: {sum}, Time: {stopwatch.ElapsedMilliseconds} ms");
@@ -52,7 +57,8 @@ static long ParallelSum(params long[] a)
     long sum = 0;
     Parallel.For(0, a.Length, i =>
     {
-        sum += a[i];
+        long localSum = a[i];
+        Interlocked.Add(ref sum, localSum);
     });
     return sum;
 }
@@ -68,6 +74,20 @@ static long ParallelSumWithLocal(params long[] a)
     localSum =>
     {
         Interlocked.Add(ref sum, localSum);
+    });
+    return sum;
+}
+
+static long ParallelSumWithPartition(params long[] a)
+{
+    long sum = 0;
+    Parallel.ForEach(Partitioner.Create(0, a.Length), range =>
+    {
+        for (int i = range.Item1; i < range.Item2; i++)
+        {
+            long localSum = a[i];
+            Interlocked.Add(ref sum, localSum);
+        }
     });
     return sum;
 }
