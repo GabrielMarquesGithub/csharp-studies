@@ -27,7 +27,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncWhenTest", "AsyncWhenT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncWebClient", "AsyncWebClient\AsyncWebClient.csproj", "{A8E9639B-25B2-41D5-8001-D131FA8533E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelProgramming", "ParallelProgramming\ParallelProgramming.csproj", "{E3545C77-C69D-4799-A262-4196D4327DCC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelProgramming1", "ParallelProgramming1\ParallelProgramming1.csproj", "{E3545C77-C69D-4799-A262-4196D4327DCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelProgramming2", "ParallelProgramming2\ParallelProgramming2.csproj", "{9DC1AF18-B373-42CF-B8EB-7B868F575666}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{E3545C77-C69D-4799-A262-4196D4327DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3545C77-C69D-4799-A262-4196D4327DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3545C77-C69D-4799-A262-4196D4327DCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DC1AF18-B373-42CF-B8EB-7B868F575666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DC1AF18-B373-42CF-B8EB-7B868F575666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DC1AF18-B373-42CF-B8EB-7B868F575666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DC1AF18-B373-42CF-B8EB-7B868F575666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

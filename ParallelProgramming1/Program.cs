@@ -2,15 +2,16 @@
 // Tempo com paralelismo no loop externo: 9876 ms
 // Tempo com paralelismo excessivo: 10584 ms
 
+using System.Collections.Concurrent;
 using System.Diagnostics;
 
 class MatrixMultiplication
 {
     static void Main()
     {
-        int matARows = 2000;
-        int matACols = 2000;
-        int matBCols = 2000;
+        int matARows = 3000;
+        int matACols = 3000;
+        int matBCols = 3000;
 
         double[,] matA = GenerateMatrix(matARows, matACols);
         double[,] matB = GenerateMatrix(matACols, matBCols);
@@ -35,6 +36,13 @@ class MatrixMultiplication
         MultiplyMatricesExcessiveParallel(matA, matB, resultExcessiveParallel);
         stopwatch.Stop();
         Console.WriteLine($"Tempo com paralelismo excessivo: {stopwatch.ElapsedMilliseconds} ms");
+
+
+        // Multiplicação com paralelismo usando Partitioner
+        stopwatch.Restart();
+        MultiplyMatricesParallelWithPartitioner(matA, matB, resultExcessiveParallel);
+        stopwatch.Stop();
+        Console.WriteLine($"Tempo com paralelismo usando Partitioner: {stopwatch.ElapsedMilliseconds} ms");
     }
 
     static double[,] GenerateMatrix(int rows, int cols)
@@ -87,6 +95,29 @@ class MatrixMultiplication
                     temp += matA[i, k] * matB[k, j];
                 }
                 result[i, j] = temp;
+            }
+        });
+    }
+
+    static void MultiplyMatricesParallelWithPartitioner(double[,] matA, double[,] matB, double[,] result)
+    {
+        int matARows = matA.GetLength(0);
+        int matACols = matA.GetLength(1);
+        int matBCols = matB.GetLength(1);
+
+        Parallel.ForEach(Partitioner.Create(0, matARows), range =>
+        {
+            for (int i = range.Item1; i < range.Item2; i++)
+            {
+                for (int j = 0; j < matBCols; j++)
+                {
+                    double temp = 0;
+                    for (int k = 0; k < matACols; k++)
+                    {
+                        temp += matA[i, k] * matB[k, j];
+                    }
+                    result[i, j] = temp;
+                }
             }
         });
     }
